@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.Inet4Address;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -14,16 +16,17 @@ public class Server {
     protected BufferedReader input;
     protected DataOutputStream output;
 
-    public void start() {
+    public void start(PrintStream progressMessageStream) {
 
-        start(0);
+        start(0, progressMessageStream);
     }
 
-    public void start(int port) {
+    public void start(int port, PrintStream progressMessageStream) {
 
         try {
 
             serverSocket = new ServerSocket(port);
+            progressMessageStream.println("Server aperto su ip " + Inet4Address.getLocalHost() + " e porta " + serverSocket.getLocalPort());
             clientSocket = serverSocket.accept();
             serverSocket.close();
 
