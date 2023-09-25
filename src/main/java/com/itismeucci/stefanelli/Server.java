@@ -42,7 +42,7 @@ public class Server {
         try {
 
             output.writeBytes(message + "\n");
-            
+
         } catch (IOException e) {
             
             e.printStackTrace();
@@ -59,6 +59,18 @@ public class Server {
             
             e.printStackTrace();
             return "ERROR";
+        }
+    }
+
+    public void close() {
+
+        try {
+            
+            clientSocket.close();
+
+        } catch (IOException e) {
+            
+            e.printStackTrace();
         }
     }
 }
